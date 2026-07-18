@@ -6,10 +6,10 @@ import type { Architecture, Asset, AssetType, Connection, Criticality } from "@/
 
 type AssetDraft = {
   name: string;
-  type: AssetType;
+  type: AssetType | "";
   ip: string;
   zone: string;
-  criticality: Criticality;
+  criticality: Criticality | "";
   os: string;
   notes: string;
 };
@@ -25,15 +25,18 @@ type AppContextValue = {
   updateConnectionDraft: (field: keyof ConnectionDraft, value: string) => void;
   addAsset: () => boolean;
   addConnection: () => boolean;
+  deleteAsset: (id: string) => void;
+  isAssetDraftComplete: boolean;
+  isAssetIpDuplicate: boolean;
   selectAsset: (id: string | null) => void;
 };
 
 const initialAssetDraft: AssetDraft = {
   name: "",
-  type: "Server",
+  type: "",
   ip: "",
-  zone: "Internal",
-  criticality: "Medium",
+  zone: "",
+  criticality: "",
   os: "",
   notes: "",
 };
@@ -51,6 +54,9 @@ export function AppProvider({ children }: PropsWithChildren) {
   const [assetDraft, setAssetDraft] = useState<AssetDraft>(initialAssetDraft);
   const [connectionDraft, setConnectionDraft] = useState<ConnectionDraft>(initialConnectionDraft);
   const [selectedAssetId, setSelectedAssetId] = useState<string | null>(null);
+  const normalizedDraftIp = assetDraft.ip.trim().toLowerCase();
+  const isAssetIpDuplicate = Boolean(normalizedDraftIp) && architecture.assets.some((asset) => asset.ip?.trim().toLowerCase() === normalizedDraftIp);
+  const isAssetDraftComplete = Boolean(assetDraft.name.trim() && assetDraft.type && assetDraft.zone && assetDraft.criticality);
 
   const value = useMemo<AppContextValue>(() => ({
     architecture,
@@ -60,15 +66,15 @@ export function AppProvider({ children }: PropsWithChildren) {
     updateAssetDraft: (field, value) => setAssetDraft((draft) => ({ ...draft, [field]: value })),
     updateConnectionDraft: (field, value) => setConnectionDraft((draft) => ({ ...draft, [field]: value })),
     addAsset: () => {
-      if (!assetDraft.name.trim()) return false;
+      if (!isAssetDraftComplete || isAssetIpDuplicate) return false;
 
       const asset: Asset = {
         id: `asset-${crypto.randomUUID()}`,
         name: assetDraft.name.trim(),
-        type: assetDraft.type,
+        type: assetDraft.type as AssetType,
         ...(assetDraft.ip.trim() ? { ip: assetDraft.ip.trim() } : {}),
         zone: assetDraft.zone,
-        criticality: assetDraft.criticality,
+        criticality: assetDraft.criticality as Criticality,
         ...(assetDraft.os.trim() ? { os: assetDraft.os.trim() } : {}),
         ...(assetDraft.notes.trim() ? { notes: assetDraft.notes.trim() } : {}),
       };
@@ -95,8 +101,19 @@ export function AppProvider({ children }: PropsWithChildren) {
       setConnectionDraft(initialConnectionDraft);
       return true;
     },
+    deleteAsset: (id) => {
+      setArchitecture((current) => ({
+        ...current,
+        assets: current.assets.filter((asset) => asset.id !== id),
+        connections: current.connections.filter((connection) => connection.from !== id && connection.to !== id),
+      }));
+      setConnectionDraft((draft) => ({ ...draft, from: draft.from === id ? "" : draft.from, to: draft.to === id ? "" : draft.to }));
+      setSelectedAssetId((selected) => selected === id ? null : selected);
+    },
+    isAssetDraftComplete,
+    isAssetIpDuplicate,
     selectAsset: setSelectedAssetId,
-  }), [architecture, assetDraft, connectionDraft, selectedAssetId]);
+  }), [architecture, assetDraft, connectionDraft, selectedAssetId, isAssetDraftComplete, isAssetIpDuplicate]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
