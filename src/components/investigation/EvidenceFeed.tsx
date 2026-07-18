@@ -1,0 +1,2 @@
+import { Badge } from "@/components/ui/Badge";
+export function EvidenceFeed() { return <aside className="panel p-4"><h2 className="text-sm font-semibold">Evidence feed</h2><div className="mt-4 space-y-3"><article className="rounded border border-border bg-panel-secondary p-3"><Badge>Auth log</Badge><p className="mt-2 text-sm text-slate-400">Evidence items will appear here after analysis.</p></article></div></aside>; }

@@ -1,0 +1,1 @@
+export function ArchitectureGraph() { return <div className="panel flex min-h-[480px] items-center justify-center"><p className="font-mono text-sm text-slate-500">Architecture graph canvas</p></div>; }

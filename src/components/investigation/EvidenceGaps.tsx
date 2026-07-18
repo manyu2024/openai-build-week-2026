@@ -1,0 +1,1 @@
+export function EvidenceGaps() { return <section className="panel p-4"><h2 className="text-sm font-semibold">Missing Evidence — What to check next</h2><p className="mt-3 text-xs text-slate-500">Evidence gaps will be populated by the analysis.</p></section>; }

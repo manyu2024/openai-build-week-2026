@@ -1,0 +1,1 @@
+export function UploadControl() { return <div className="panel p-4"><p className="text-sm font-medium">Upload log file</p><p className="mt-1 text-xs text-slate-500">.json, .csv, .txt, or .log</p><input className="mt-3 text-xs" type="file" accept=".json,.csv,.txt,.log" /></div>; }

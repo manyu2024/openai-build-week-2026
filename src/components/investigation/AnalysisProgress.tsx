@@ -1,0 +1,2 @@
+const steps = ["Parsing log entries", "Identifying anomalous events", "Mapping events to architecture", "Generating hypotheses", "Identifying evidence gaps", "Building attack timeline"];
+export function AnalysisProgress() { return <ol className="panel space-y-3 p-4">{steps.map((step, index) => <li key={step} className="flex gap-3 text-sm text-slate-400"><span className="font-mono text-cyan">{String(index + 1).padStart(2, "0")}</span>{step}...</li>)}</ol>; }

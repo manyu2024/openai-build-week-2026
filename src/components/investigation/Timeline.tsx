@@ -1,0 +1,1 @@
+export function Timeline() { return <div className="flex min-h-52 items-center justify-center border-b border-border"><p className="font-mono text-xs text-slate-500">Chronological timeline visualization</p></div>; }

@@ -1,0 +1,307 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.11.0
+2 info using node@v24.14.1
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\hp\Documents\Codex\2026-07-18\github-plugin-github-openai-curated-remote\outputs\argus\.npmrc
+5 silly config load:file:C:\Users\hp\.npmrc
+6 silly config load:file:C:\Users\hp\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--cache" ".npm-cache" "--no-audit" "--no-fund" "--loglevel" "verbose"
+9 verbose logfile logs-max:10 dir:C:\Users\hp\Documents\Codex\2026-07-18\github-plugin-github-openai-curated-remote\outputs\argus\.npm-cache\_logs\2026-07-18T15_09_06_771Z-
+10 verbose logfile C:\Users\hp\Documents\Codex\2026-07-18\github-plugin-github-openai-curated-remote\outputs\argus\.npm-cache\_logs\2026-07-18T15_09_06_771Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2348810240 maxSize:587202560 maxEntrySize:293601280
+13 silly idealTree buildDeps
+14 silly fetch manifest fsevents@~2.3.2
+15 silly packumentCache full:https://registry.npmjs.org/fsevents cache-miss
+16 http cache https://registry.npmjs.org/fsevents 318ms (cache hit)
+17 silly packumentCache full:https://registry.npmjs.org/fsevents set size:182472 disposed:false
+18 silly placeDep ROOT fsevents@2.3.3 OK for: chokidar@3.6.0 want: ~2.3.2
+19 silly fetch manifest @next/swc-darwin-arm64@14.2.5
+20 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-darwin-arm64 cache-miss
+21 http cache https://registry.npmjs.org/@next%2fswc-darwin-arm64 96ms (cache hit)
+22 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-darwin-arm64 set size:5414870 disposed:false
+23 silly fetch manifest @next/swc-darwin-x64@14.2.5
+24 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-darwin-x64 cache-miss
+25 http cache https://registry.npmjs.org/@next%2fswc-darwin-x64 72ms (cache hit)
+26 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-darwin-x64 set size:5356429 disposed:false
+27 silly fetch manifest @next/swc-linux-arm64-gnu@14.2.5
+28 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-linux-arm64-gnu cache-miss
+29 http cache https://registry.npmjs.org/@next%2fswc-linux-arm64-gnu 69ms (cache hit)
+30 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-linux-arm64-gnu set size:5270218 disposed:false
+31 silly fetch manifest @next/swc-linux-arm64-musl@14.2.5
+32 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-linux-arm64-musl cache-miss
+33 http cache https://registry.npmjs.org/@next%2fswc-linux-arm64-musl 56ms (cache hit)
+34 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-linux-arm64-musl set size:5288774 disposed:false
+35 silly fetch manifest @next/swc-linux-x64-gnu@14.2.5
+36 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-linux-x64-gnu cache-miss
+37 http cache https://registry.npmjs.org/@next%2fswc-linux-x64-gnu 51ms (cache hit)
+38 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-linux-x64-gnu set size:5466163 disposed:false
+39 silly fetch manifest @next/swc-linux-x64-musl@14.2.5
+40 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-linux-x64-musl cache-miss
+41 http cache https://registry.npmjs.org/@next%2fswc-linux-x64-musl 49ms (cache hit)
+42 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-linux-x64-musl set size:5222074 disposed:false
+43 silly fetch manifest @next/swc-win32-arm64-msvc@14.2.5
+44 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-win32-arm64-msvc cache-miss
+45 http cache https://registry.npmjs.org/@next%2fswc-win32-arm64-msvc 53ms (cache hit)
+46 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-win32-arm64-msvc set size:5251665 disposed:false
+47 silly fetch manifest @next/swc-win32-ia32-msvc@14.2.5
+48 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-win32-ia32-msvc cache-miss
+49 http cache https://registry.npmjs.org/@next%2fswc-win32-ia32-msvc 82ms (cache hit)
+50 silly packumentCache full:https://registry.npmjs.org/@next%2fswc-win32-ia32-msvc set size:3201450 disposed:false
+51 silly placeDep ROOT @next/swc-darwin-arm64@14.2.5 OK for: next@14.2.5 want: 14.2.5
+52 silly placeDep ROOT @next/swc-darwin-x64@14.2.5 OK for: next@14.2.5 want: 14.2.5
+53 silly placeDep ROOT @next/swc-linux-arm64-gnu@14.2.5 OK for: next@14.2.5 want: 14.2.5
+54 silly placeDep ROOT @next/swc-linux-arm64-musl@14.2.5 OK for: next@14.2.5 want: 14.2.5
+55 silly placeDep ROOT @next/swc-linux-x64-gnu@14.2.5 OK for: next@14.2.5 want: 14.2.5
+56 silly placeDep ROOT @next/swc-linux-x64-musl@14.2.5 OK for: next@14.2.5 want: 14.2.5
+57 silly placeDep ROOT @next/swc-win32-arm64-msvc@14.2.5 OK for: next@14.2.5 want: 14.2.5
+58 silly placeDep ROOT @next/swc-win32-ia32-msvc@14.2.5 OK for: next@14.2.5 want: 14.2.5
+59 silly reify mark retired [
+59 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\autoprefixer',
+59 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\autoprefixer',
+59 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\autoprefixer.cmd',
+59 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\autoprefixer.ps1'
+59 silly reify ]
+60 silly reify mark retired [
+60 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\browserslist',
+60 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\browserslist',
+60 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\browserslist.cmd',
+60 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\browserslist.ps1'
+60 silly reify ]
+61 silly reify mark retired [
+61 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\cssesc',
+61 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\cssesc',
+61 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\cssesc.cmd',
+61 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\cssesc.ps1'
+61 silly reify ]
+62 silly reify mark retired [
+62 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\jiti',
+62 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\jiti',
+62 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\jiti.cmd',
+62 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\jiti.ps1'
+62 silly reify ]
+63 silly reify mark retired [
+63 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\loose-envify',
+63 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\loose-envify',
+63 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\loose-envify.cmd',
+63 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\loose-envify.ps1'
+63 silly reify ]
+64 silly reify mark retired [
+64 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\nanoid',
+64 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\nanoid',
+64 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\nanoid.cmd',
+64 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\nanoid.ps1'
+64 silly reify ]
+65 silly reify mark retired [
+65 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\next',
+65 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\next',
+65 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\next.cmd',
+65 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\next.ps1'
+65 silly reify ]
+66 silly reify mark retired [
+66 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\baseline-browser-mapping',
+66 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\baseline-browser-mapping',
+66 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\baseline-browser-mapping.cmd',
+66 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\baseline-browser-mapping.ps1'
+66 silly reify ]
+67 silly reify mark retired [
+67 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\resolve',
+67 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\resolve',
+67 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\resolve.cmd',
+67 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\resolve.ps1'
+67 silly reify ]
+68 silly reify mark retired [
+68 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\sucrase',
+68 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase',
+68 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase.cmd',
+68 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase.ps1',
+68 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase-node',
+68 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase-node.cmd',
+68 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase-node.ps1'
+68 silly reify ]
+69 silly reify mark retired [
+69 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\tailwindcss',
+69 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwind',
+69 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwind.cmd',
+69 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwind.ps1',
+69 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwindcss',
+69 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwindcss.cmd',
+69 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwindcss.ps1'
+69 silly reify ]
+70 silly reify mark retired [
+70 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\typescript',
+70 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsc',
+70 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsc.cmd',
+70 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsc.ps1',
+70 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsserver',
+70 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsserver.cmd',
+70 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsserver.ps1'
+70 silly reify ]
+71 silly reify mark retired [
+71 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\yaml',
+71 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\yaml',
+71 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\yaml.cmd',
+71 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\yaml.ps1'
+71 silly reify ]
+72 silly reify mark retired [
+72 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\update-browserslist-db',
+72 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\update-browserslist-db',
+72 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\update-browserslist-db.cmd',
+72 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\update-browserslist-db.ps1'
+72 silly reify ]
+73 silly reify moves {
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\autoprefixer': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.autoprefixer-6gAxoCq6',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\autoprefixer': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.autoprefixer-RYrba6qt',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\autoprefixer.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.autoprefixer.cmd-5MqkgWGR',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\autoprefixer.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.autoprefixer.ps1-jCXnlmMa',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\browserslist': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.browserslist-wJrj3Mnh',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\browserslist': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.browserslist-6r4d9vzx',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\browserslist.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.browserslist.cmd-Rtrwfw2D',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\browserslist.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.browserslist.ps1-s2kzGLJ9',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\cssesc': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.cssesc-u7JxM8kU',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\cssesc': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.cssesc-83X6NUsS',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\cssesc.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.cssesc.cmd-9q5jLxA5',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\cssesc.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.cssesc.ps1-yi8Bkn5z',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\jiti': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.jiti-Z7JvqGEl',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\jiti': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.jiti-Y8d7CBCr',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\jiti.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.jiti.cmd-GVivwTBQ',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\jiti.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.jiti.ps1-JR8K0wU0',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\loose-envify': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.loose-envify-rZTxH19T',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\loose-envify': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.loose-envify-m4Phfz5R',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\loose-envify.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.loose-envify.cmd-hMNuFLIB',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\loose-envify.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.loose-envify.ps1-wbRMxOtg',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\nanoid': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.nanoid-6FznHYlJ',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\nanoid': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.nanoid-niF24OMS',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\nanoid.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.nanoid.cmd-KPBMmolE',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\nanoid.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.nanoid.ps1-XsLPVtko',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\next': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.next-Xrufya88',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\next': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.next-M8mdnxOB',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\next.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.next.cmd-x1UETpfv',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\next.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.next.ps1-3DcanCvO',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\baseline-browser-mapping': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.baseline-browser-mapping-Pn8IaOB4',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\baseline-browser-mapping': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.baseline-browser-mapping-itkzVRmb',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\baseline-browser-mapping.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.baseline-browser-mapping.cmd-iUeku6R9',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\baseline-browser-mapping.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.baseline-browser-mapping.ps1-ul21gjQt',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\resolve': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.resolve-oUYOpMQb',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\resolve': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.resolve-325qUMce',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\resolve.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.resolve.cmd-SDdMUpBJ',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\resolve.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.resolve.ps1-ELoDco6d',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\sucrase': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.sucrase-P6UbozFH',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.sucrase-8dJR5NdF',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.sucrase.cmd-CWrhbHMZ',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.sucrase.ps1-0iRCWUlX',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase-node': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.sucrase-node-NlPSiliL',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase-node.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.sucrase-node.cmd-u1IsAYS2',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\sucrase-node.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.sucrase-node.ps1-k4Bgnap0',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\tailwindcss': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.tailwindcss-liHYkvWu',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwind': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tailwind-edFnF9wl',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwind.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tailwind.cmd-Om35g7JM',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwind.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tailwind.ps1-1R4oTKN2',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwindcss': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tailwindcss-TPt3sBcr',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwindcss.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tailwindcss.cmd-9X5Lp80H',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tailwindcss.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tailwindcss.ps1-R2VVZnGS',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\typescript': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.typescript-Fmnx7fi9',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsc': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tsc-z5Uh8i5z',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsc.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tsc.cmd-BQ4ak1Mn',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsc.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tsc.ps1-wbzSTLdv',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsserver': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tsserver-uG6HAohd',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsserver.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tsserver.cmd-XBywRFLg',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\tsserver.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.tsserver.ps1-L6XoTGaF',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\yaml': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.yaml-ps5YBJ4g',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\yaml': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.yaml-3oV9Sv8i',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\yaml.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.yaml.cmd-uW1cjYyD',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\yaml.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.yaml.ps1-jT1skDkB',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\update-browserslist-db': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.update-browserslist-db-XsXBMuBx',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\update-browserslist-db': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.update-browserslist-db-Q1ulQd95',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\update-browserslist-db.cmd': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.update-browserslist-db.cmd-ZPQ6vzTM',
+73 silly reify   'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\update-browserslist-db.ps1': 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\.bin\\.update-browserslist-db.ps1-Wkyh8QOL'
+73 silly reify }
+74 silly packumentCache corgi:https://registry.npmjs.org/yaml cache-miss
+75 silly packumentCache corgi:https://registry.npmjs.org/update-browserslist-db cache-miss
+76 silly packumentCache corgi:https://registry.npmjs.org/typescript cache-miss
+77 silly packumentCache corgi:https://registry.npmjs.org/tailwindcss cache-miss
+78 silly packumentCache corgi:https://registry.npmjs.org/sucrase cache-miss
+79 silly packumentCache corgi:https://registry.npmjs.org/resolve cache-miss
+80 silly packumentCache corgi:https://registry.npmjs.org/baseline-browser-mapping cache-miss
+81 silly packumentCache corgi:https://registry.npmjs.org/loose-envify cache-miss
+82 silly packumentCache corgi:https://registry.npmjs.org/nanoid cache-miss
+83 silly packumentCache corgi:https://registry.npmjs.org/jiti cache-miss
+84 silly packumentCache corgi:https://registry.npmjs.org/browserslist cache-miss
+85 silly packumentCache corgi:https://registry.npmjs.org/cssesc cache-miss
+86 silly packumentCache corgi:https://registry.npmjs.org/autoprefixer cache-miss
+87 http cache https://registry.npmjs.org/tailwindcss 156ms (cache hit)
+88 silly packumentCache corgi:https://registry.npmjs.org/tailwindcss set size:4770405 disposed:false
+89 http cache https://registry.npmjs.org/autoprefixer 244ms (cache hit)
+90 silly packumentCache corgi:https://registry.npmjs.org/autoprefixer set size:303229 disposed:false
+91 http cache https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.7.tgz 286ms (cache hit)
+92 http cache https://registry.npmjs.org/autoprefixer/-/autoprefixer-10.4.19.tgz 233ms (cache hit)
+93 http fetch GET 200 https://registry.npmjs.org/update-browserslist-db 526ms (cache miss)
+94 silly packumentCache corgi:https://registry.npmjs.org/update-browserslist-db set size:undefined disposed:false
+95 http cache https://registry.npmjs.org/update-browserslist-db/-/update-browserslist-db-1.2.3.tgz 81ms (cache hit)
+96 http fetch GET 200 https://registry.npmjs.org/sucrase 631ms (cache miss)
+97 silly packumentCache corgi:https://registry.npmjs.org/sucrase set size:undefined disposed:false
+98 http fetch GET 200 https://registry.npmjs.org/jiti 622ms (cache miss)
+99 silly packumentCache corgi:https://registry.npmjs.org/jiti set size:undefined disposed:false
+100 http fetch GET 200 https://registry.npmjs.org/nanoid 676ms (cache miss)
+101 silly packumentCache corgi:https://registry.npmjs.org/nanoid set size:undefined disposed:false
+102 http fetch GET 200 https://registry.npmjs.org/browserslist 722ms (cache miss)
+103 silly packumentCache corgi:https://registry.npmjs.org/browserslist set size:undefined disposed:false
+104 http fetch GET 200 https://registry.npmjs.org/cssesc 788ms (cache miss)
+105 silly packumentCache corgi:https://registry.npmjs.org/cssesc set size:undefined disposed:false
+106 http cache https://registry.npmjs.org/sucrase/-/sucrase-3.35.1.tgz 172ms (cache hit)
+107 http cache https://registry.npmjs.org/jiti/-/jiti-1.21.7.tgz 164ms (cache hit)
+108 http fetch GET 200 https://registry.npmjs.org/loose-envify 812ms (cache miss)
+109 silly packumentCache corgi:https://registry.npmjs.org/loose-envify set size:undefined disposed:false
+110 http cache https://registry.npmjs.org/nanoid/-/nanoid-3.3.16.tgz 136ms (cache hit)
+111 http fetch GET 200 https://registry.npmjs.org/baseline-browser-mapping 851ms (cache miss)
+112 silly packumentCache corgi:https://registry.npmjs.org/baseline-browser-mapping set size:undefined disposed:false
+113 http cache https://registry.npmjs.org/browserslist/-/browserslist-4.28.6.tgz 118ms (cache hit)
+114 http cache https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz 91ms (cache hit)
+115 http fetch GET 200 https://registry.npmjs.org/resolve 913ms (cache miss)
+116 silly packumentCache corgi:https://registry.npmjs.org/resolve set size:undefined disposed:false
+117 http cache https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz 94ms (cache hit)
+118 http fetch GET 200 https://registry.npmjs.org/yaml 927ms (cache miss)
+119 silly packumentCache corgi:https://registry.npmjs.org/yaml set size:undefined disposed:false
+120 http cache https://registry.npmjs.org/baseline-browser-mapping/-/baseline-browser-mapping-2.10.43.tgz 103ms (cache hit)
+121 http cache https://registry.npmjs.org/resolve/-/resolve-1.22.12.tgz 92ms (cache hit)
+122 http cache https://registry.npmjs.org/yaml/-/yaml-2.9.0.tgz 404ms (cache hit)
+123 http fetch GET 200 https://registry.npmjs.org/typescript 15767ms (cache miss)
+124 silly packumentCache corgi:https://registry.npmjs.org/typescript set size:undefined disposed:false
+125 http cache https://registry.npmjs.org/typescript/-/typescript-5.5.4.tgz 217ms (cache hit)
+126 warn cleanup Failed to remove some directories [
+126 warn cleanup   [
+126 warn cleanup     '\\\\?\\C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\next',
+126 warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\hp\Documents\Codex\2026-07-18\github-plugin-github-openai-curated-remote\outputs\argus\node_modules\next\dist\server\app-render'] {
+126 warn cleanup       errno: -4051,
+126 warn cleanup       code: 'ENOTEMPTY',
+126 warn cleanup       syscall: 'rmdir',
+126 warn cleanup       path: 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\next\\dist\\server\\app-render'
+126 warn cleanup     }
+126 warn cleanup   ],
+126 warn cleanup   [
+126 warn cleanup     'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\next',
+126 warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\hp\Documents\Codex\2026-07-18\github-plugin-github-openai-curated-remote\outputs\argus\node_modules\next\dist\server\app-render'] {
+126 warn cleanup       errno: -4051,
+126 warn cleanup       code: 'ENOTEMPTY',
+126 warn cleanup       syscall: 'rmdir',
+126 warn cleanup       path: 'C:\\Users\\hp\\Documents\\Codex\\2026-07-18\\github-plugin-github-openai-curated-remote\\outputs\\argus\\node_modules\\next\\dist\\server\\app-render'
+126 warn cleanup     }
+126 warn cleanup   ]
+126 warn cleanup ]
+127 verbose stack Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\hp\Documents\Codex\2026-07-18\github-plugin-github-openai-curated-remote\outputs\argus\node_modules\next\dist\server\future\route-modules'
+128 error code ENOTEMPTY
+129 error syscall rmdir
+130 error path C:\Users\hp\Documents\Codex\2026-07-18\github-plugin-github-openai-curated-remote\outputs\argus\node_modules\next\dist\server\future\route-modules
+131 error errno -4051
+132 error ENOTEMPTY: directory not empty, rmdir 'C:\Users\hp\Documents\Codex\2026-07-18\github-plugin-github-openai-curated-remote\outputs\argus\node_modules\next\dist\server\future\route-modules'
+133 silly unfinished npm timer reify 1784387350494
+134 silly unfinished npm timer reify:unpack 1784387352965
+135 silly unfinished npm timer reifyNode:node_modules/next 1784387352965
+136 verbose cwd C:\Users\hp\Documents\Codex\2026-07-18\github-plugin-github-openai-curated-remote\outputs\argus
+137 verbose os Windows_NT 10.0.19045
+138 verbose node v24.14.1
+139 verbose npm  v11.11.0
+140 verbose exit -4051
+141 verbose code -4051
+142 error A complete log of this run can be found in: C:\Users\hp\Documents\Codex\2026-07-18\github-plugin-github-openai-curated-remote\outputs\argus\.npm-cache\_logs\2026-07-18T15_09_06_771Z-debug-0.log

@@ -1,0 +1,3 @@
+export function OrganizationForm() {
+  return <section className="mx-auto max-w-xl panel p-6"><p className="eyebrow">Organization setup</p><h1 className="mt-2 text-2xl font-semibold">Create organization</h1><form className="mt-6 space-y-4"><label className="block text-sm">Organization name<input className="mt-1 w-full rounded border bg-panel-secondary p-2" /></label><label className="block text-sm">Description <span className="text-slate-500">(optional)</span><textarea className="mt-1 w-full rounded border bg-panel-secondary p-2" rows={4} /></label><button type="button" className="rounded bg-primary px-4 py-2 text-sm">Continue to Architecture</button></form></section>;
+}
