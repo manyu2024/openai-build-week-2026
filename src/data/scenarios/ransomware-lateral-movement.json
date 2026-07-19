@@ -1,0 +1,15 @@
+{
+  "id": "ransomware-lateral-movement",
+  "name": "Ransomware Lateral Movement",
+  "summary": "A phishing-originated endpoint compromise spread through the domain before file encryption.",
+  "evidenceItems": [
+    { "id": "ev-01", "type": "ENDPOINT_LOG", "timestamp": "08:12:04", "summary": "Suspicious Office child process on WS-014", "linkedHypotheses": ["h1"] },
+    { "id": "ev-02", "type": "AUTH_LOG", "timestamp": "08:19:33", "summary": "Privileged account used on WS-014", "linkedHypotheses": ["h1", "h2"] },
+    { "id": "ev-03", "type": "NETWORK_LOG", "timestamp": "08:32:10", "summary": "SMB fan-out to 14 workstations", "linkedHypotheses": ["h1", "h2"] },
+    { "id": "ev-04", "type": "SYSTEM_LOG", "timestamp": "09:02:45", "summary": "Mass file rename and ransom note creation", "linkedHypotheses": ["h1"] },
+    { "id": "ev-05", "type": "DATA_LOG", "timestamp": "09:09:16", "summary": "File share encryption rate exceeded threshold", "linkedHypotheses": ["h1"] }
+  ],
+  "timeline": [{ "evidenceId": "ev-01", "label": "User execution", "technique": "T1204" }, { "evidenceId": "ev-02", "label": "Credential access", "technique": "T1003" }, { "evidenceId": "ev-03", "label": "Lateral spread", "technique": "T1021" }, { "evidenceId": "ev-04", "label": "Impact", "technique": "T1486" }],
+  "hypotheses": [{ "id": "h1", "title": "Targeted ransomware deployment", "confidence": 88, "summary": "A phishing payload enabled credential theft and controlled deployment across shares.", "reasoning": "Endpoint execution precedes privilege use, SMB fan-out, and rapid encryption across the estate.", "supporting": 5, "conflicting": 0, "techniques": ["T1204", "T1003", "T1486"], "path": ["Email Gateway", "WS-014", "Domain Controller", "File Server"] }, { "id": "h2", "title": "Worm-like propagation", "confidence": 34, "summary": "A self-propagating payload may have spread through SMB.", "reasoning": "The rapid fan-out supports propagation, but privileged account activity indicates operator control.", "supporting": 2, "conflicting": 2, "techniques": ["T1021", "T1486"] }],
+  "evidenceGaps": [{ "id": "gap-1", "description": "Collect the original phishing message and attachment", "strengthens": "Targeted ransomware", "weakens": "Worm-like propagation" }, { "id": "gap-2", "description": "Review domain controller authentication logs", "strengthens": "Targeted ransomware", "weakens": "Worm-like propagation" }]
+}

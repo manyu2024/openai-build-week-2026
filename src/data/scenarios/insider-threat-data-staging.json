@@ -1,0 +1,15 @@
+{
+  "id": "insider-threat-data-staging",
+  "name": "Insider Threat Data Staging",
+  "summary": "Unusual after-hours database access and cloud synchronization suggest sensitive data staging.",
+  "evidenceItems": [
+    { "id": "ev-01", "type": "AUTH_LOG", "timestamp": "23:18:22", "summary": "Authorized VPN sign-in by j.singh", "linkedHypotheses": ["h1", "h2"] },
+    { "id": "ev-02", "type": "DATA_LOG", "timestamp": "23:26:43", "summary": "Unusual bulk customer export from CRM database", "linkedHypotheses": ["h1", "h2"] },
+    { "id": "ev-03", "type": "SYSTEM_LOG", "timestamp": "23:37:01", "summary": "Compressed archive written to user temp folder", "linkedHypotheses": ["h1"] },
+    { "id": "ev-04", "type": "NETWORK_LOG", "timestamp": "23:44:55", "summary": "Personal cloud storage sync from workstation", "linkedHypotheses": ["h1"] },
+    { "id": "ev-05", "type": "ENDPOINT_LOG", "timestamp": "23:49:19", "summary": "USB device connected after normal business hours", "linkedHypotheses": ["h1"] }
+  ],
+  "timeline": [{ "evidenceId": "ev-01", "label": "Valid account", "technique": "T1078" }, { "evidenceId": "ev-02", "label": "Data collection", "technique": "T1213" }, { "evidenceId": "ev-03", "label": "Archive data", "technique": "T1560" }, { "evidenceId": "ev-04", "label": "Web service", "technique": "T1567" }],
+  "hypotheses": [{ "id": "h1", "title": "Malicious insider data staging", "confidence": 79, "summary": "An employee likely collected customer records and staged them for transfer to personal storage.", "reasoning": "The work pattern is anomalous and aligns with archive creation, personal sync traffic, and USB activity.", "supporting": 5, "conflicting": 1, "techniques": ["T1078", "T1213", "T1560", "T1567"], "path": ["VPN", "CRM Application", "Customer Database", "Personal Cloud"] }, { "id": "h2", "title": "Compromised employee credentials", "confidence": 41, "summary": "An external actor may be using a valid employee session.", "reasoning": "Session source requires verification; no clear initial access indicator is present.", "supporting": 2, "conflicting": 2, "techniques": ["T1078", "T1213"] }],
+  "evidenceGaps": [{ "id": "gap-1", "description": "Verify the employee's location and approved work request", "strengthens": "Malicious insider", "weakens": "Compromised credentials" }, { "id": "gap-2", "description": "Check VPN source IP reputation and device posture", "strengthens": "Compromised credentials", "weakens": "Malicious insider" }]
+}
