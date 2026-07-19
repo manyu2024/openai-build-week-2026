@@ -1,15 +1,226 @@
 {
   "id": "insider-threat-data-staging",
-  "name": "Insider Threat Data Staging",
-  "summary": "Unusual after-hours database access and cloud synchronization suggest sensitive data staging.",
+  "name": "Insider Threat — Data Staging",
+  "summary": "A senior database administrator used valid credentials and authorized permissions to access customer PII outside normal working hours across three nights. The administrator progressively broadened database exports, created encrypted archives on their workstation, uploaded them to personal cloud storage, and showed potential departure-related behavior through HR severance-policy access and job-board searches.",
   "evidenceItems": [
-    { "id": "ev-01", "type": "AUTH_LOG", "timestamp": "23:18:22", "summary": "Authorized VPN sign-in by j.singh", "linkedHypotheses": ["h1", "h2"] },
-    { "id": "ev-02", "type": "DATA_LOG", "timestamp": "23:26:43", "summary": "Unusual bulk customer export from CRM database", "linkedHypotheses": ["h1", "h2"] },
-    { "id": "ev-03", "type": "SYSTEM_LOG", "timestamp": "23:37:01", "summary": "Compressed archive written to user temp folder", "linkedHypotheses": ["h1"] },
-    { "id": "ev-04", "type": "NETWORK_LOG", "timestamp": "23:44:55", "summary": "Personal cloud storage sync from workstation", "linkedHypotheses": ["h1"] },
-    { "id": "ev-05", "type": "ENDPOINT_LOG", "timestamp": "23:49:19", "summary": "USB device connected after normal business hours", "linkedHypotheses": ["h1"] }
+    {
+      "id": "ev-01",
+      "type": "AUTH_LOG",
+      "timestamp": "23:07:14",
+      "summary": "Night 1: VPN and database authentication succeeded for CORP\\d.patel from the administrator's assigned workstation outside normal work hours.",
+      "linkedHypotheses": ["h1", "h2"]
+    },
+    {
+      "id": "ev-02",
+      "type": "DATA_LOG",
+      "timestamp": "23:24:39",
+      "summary": "Night 1: Database audit logs show d.patel queried CustomerContact and CustomerAddress tables, which are outside the administrator's typical access pattern.",
+      "linkedHypotheses": ["h1", "h2"]
+    },
+    {
+      "id": "ev-03",
+      "type": "ENDPOINT_LOG",
+      "timestamp": "00:11:52",
+      "summary": "Night 1: Workstation telemetry recorded sqlcmd.exe exporting 18,420 customer records to C:\\Users\\d.patel\\Documents\\customer_contacts.csv.",
+      "linkedHypotheses": ["h1", "h2"]
+    },
+    {
+      "id": "ev-04",
+      "type": "SYSTEM_LOG",
+      "timestamp": "00:47:26",
+      "summary": "Night 1: File-system auditing recorded 7z.exe creating a password-protected archive named Q1_archive.7z from the exported CSV file.",
+      "linkedHypotheses": ["h1", "h3"]
+    },
+    {
+      "id": "ev-05",
+      "type": "AUTH_LOG",
+      "timestamp": "23:36:08",
+      "summary": "Night 2: d.patel authenticated to the HR portal from the assigned workstation and opened the employee severance-policy document.",
+      "linkedHypotheses": ["h1"]
+    },
+    {
+      "id": "ev-06",
+      "type": "DATA_LOG",
+      "timestamp": "23:58:44",
+      "summary": "Night 2: Database audit logs show d.patel executed broader queries against CustomerPII, PaymentProfile, and AccountHistory tables using authorized DBA permissions.",
+      "linkedHypotheses": ["h1", "h2", "h3"]
+    },
+    {
+      "id": "ev-07",
+      "type": "ENDPOINT_LOG",
+      "timestamp": "00:43:17",
+      "summary": "Night 2: Workstation telemetry recorded creation of three CSV exports totaling 2.7 GB in a user-owned local staging folder.",
+      "linkedHypotheses": ["h1", "h2"]
+    },
+    {
+      "id": "ev-08",
+      "type": "NETWORK_LOG",
+      "timestamp": "01:31:29",
+      "summary": "Night 2: Proxy logs show 2.8 GB uploaded over HTTPS from d.patel's workstation to a personal cloud-storage account at drive.google.com.",
+      "linkedHypotheses": ["h1", "h2"]
+    },
+    {
+      "id": "ev-09",
+      "type": "SYSTEM_LOG",
+      "timestamp": "00:14:06",
+      "summary": "Night 3: File-system auditing recorded d.patel enumerating database export directories and copying prior CSV files into C:\\Users\\d.patel\\AppData\\Local\\Temp\\staging.",
+      "linkedHypotheses": ["h1", "h3"]
+    },
+    {
+      "id": "ev-10",
+      "type": "DATA_LOG",
+      "timestamp": "00:52:41",
+      "summary": "Night 3: Database audit logs show a full extract of active customer records, including PII fields not required for d.patel's scheduled administration duties.",
+      "linkedHypotheses": ["h1", "h2"]
+    },
+    {
+      "id": "ev-11",
+      "type": "ENDPOINT_LOG",
+      "timestamp": "01:46:33",
+      "summary": "Night 3: 7z.exe created an encrypted 8.1 GB archive named personal_backup.7z containing customer-data CSV files.",
+      "linkedHypotheses": ["h1", "h2", "h3"]
+    },
+    {
+      "id": "ev-12",
+      "type": "NETWORK_LOG",
+      "timestamp": "02:38:57",
+      "summary": "Night 3: Proxy logs show 8.1 GB uploaded to the same personal cloud-storage account; separate daytime proxy activity shows repeated job-board searches from the workstation.",
+      "linkedHypotheses": ["h1"]
+    }
   ],
-  "timeline": [{ "evidenceId": "ev-01", "label": "Valid account", "technique": "T1078" }, { "evidenceId": "ev-02", "label": "Data collection", "technique": "T1213" }, { "evidenceId": "ev-03", "label": "Archive data", "technique": "T1560" }, { "evidenceId": "ev-04", "label": "Web service", "technique": "T1567" }],
-  "hypotheses": [{ "id": "h1", "title": "Malicious insider data staging", "confidence": 79, "summary": "An employee likely collected customer records and staged them for transfer to personal storage.", "reasoning": "The work pattern is anomalous and aligns with archive creation, personal sync traffic, and USB activity.", "supporting": 5, "conflicting": 1, "techniques": ["T1078", "T1213", "T1560", "T1567"], "path": ["VPN", "CRM Application", "Customer Database", "Personal Cloud"] }, { "id": "h2", "title": "Compromised employee credentials", "confidence": 41, "summary": "An external actor may be using a valid employee session.", "reasoning": "Session source requires verification; no clear initial access indicator is present.", "supporting": 2, "conflicting": 2, "techniques": ["T1078", "T1213"] }],
-  "evidenceGaps": [{ "id": "gap-1", "description": "Verify the employee's location and approved work request", "strengthens": "Malicious insider", "weakens": "Compromised credentials" }, { "id": "gap-2", "description": "Check VPN source IP reputation and device posture", "strengthens": "Compromised credentials", "weakens": "Malicious insider" }]
+  "timeline": [
+    {
+      "evidenceId": "ev-01",
+      "label": "Night 1 after-hours access",
+      "technique": "T1078"
+    },
+    {
+      "evidenceId": "ev-02",
+      "label": "Initial PII queries",
+      "technique": "T1213"
+    },
+    {
+      "evidenceId": "ev-03",
+      "label": "Customer data exported",
+      "technique": "T1005"
+    },
+    {
+      "evidenceId": "ev-04",
+      "label": "First encrypted archive created",
+      "technique": "T1560"
+    },
+    {
+      "evidenceId": "ev-05",
+      "label": "Severance policy reviewed",
+      "technique": "T1213"
+    },
+    {
+      "evidenceId": "ev-06",
+      "label": "Broader PII collection",
+      "technique": "T1213"
+    },
+    {
+      "evidenceId": "ev-07",
+      "label": "Large CSV staging export",
+      "technique": "T1039"
+    },
+    {
+      "evidenceId": "ev-08",
+      "label": "Personal cloud upload",
+      "technique": "T1567"
+    },
+    {
+      "evidenceId": "ev-09",
+      "label": "Staging directories enumerated",
+      "technique": "T1083"
+    },
+    {
+      "evidenceId": "ev-10",
+      "label": "Full customer dataset extracted",
+      "technique": "T1005"
+    },
+    {
+      "evidenceId": "ev-11",
+      "label": "Large encrypted archive staged",
+      "technique": "T1560"
+    },
+    {
+      "evidenceId": "ev-12",
+      "label": "Final cloud transfer",
+      "technique": "T1567"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "h1",
+      "title": "Malicious insider stealing data before resignation",
+      "confidence": 76,
+      "summary": "The senior database administrator likely staged and transferred customer PII for personal retention or misuse before an anticipated departure. Although each action used authorized credentials and permissions, the timing, expanding data scope, encrypted archives, personal cloud uploads, severance-policy review, and job-search activity form a concerning behavioral pattern.",
+      "reasoning": "Evidence ev-01 establishes after-hours use of d.patel's assigned workstation and valid credentials, while ev-02 documents access to customer data outside the administrator's normal responsibilities. The data collection expanded from limited contact data in ev-03 to broader PII and payment-related tables in ev-06, then a full customer extract in ev-10. Evidence ev-04 and ev-11 show deliberate creation of password-protected archives, which is consistent with concealing staged information rather than routine administration. The personal cloud transfers in ev-08 and ev-12 closely match the archived data volumes and demonstrate external movement of the collected files. Finally, ev-05 and the job-board activity noted in ev-12 provide contextual indicators of potential resignation planning that increase concern despite no technical policy control having been bypassed.",
+      "supporting": 12,
+      "conflicting": 0,
+      "techniques": ["T1078", "T1213", "T1039", "T1005", "T1083", "T1560", "T1567"],
+      "path": ["VPN", "Workstation", "Database", "Cloud Storage"]
+    },
+    {
+      "id": "h2",
+      "title": "Compromised credentials used by an external actor",
+      "confidence": 18,
+      "summary": "An external actor using d.patel's credentials remains possible because the activity occurred overnight and involved valuable customer data. However, use of the assigned workstation, consistent cloud-account destination, and departure-related browsing evidence make direct insider activity more likely.",
+      "reasoning": "Evidence ev-01 confirms valid credential use during an unusual overnight period, and ev-02, ev-03, ev-06, ev-07, ev-08, ev-10, and ev-11 document sensitive data collection and transfer that could be performed by a credential thief. The sequence could therefore represent an external actor operating through an already authenticated user environment. However, no impossible-travel event, anomalous VPN source, unfamiliar device identifier, or failed authentication burst is present in the available evidence. The staged files were created in d.patel's normal user profile in ev-03 and ev-07, and ev-08 transferred data to a personal account associated with the employee's usual browser session. The HR severance-policy access in ev-05 and job-board searches described in ev-12 are contextual indicators more consistent with the employee's own activity than an external actor's objective.",
+      "supporting": 1,
+      "conflicting": 7,
+      "techniques": ["T1078", "T1213", "T1005", "T1560", "T1567"],
+      "path": ["VPN", "Workstation", "Database", "Cloud Storage"]
+    },
+    {
+      "id": "h3",
+      "title": "Authorized but undocumented data migration project",
+      "confidence": 6,
+      "summary": "The activity could reflect an undocumented migration, backup, or data-validation effort conducted by a senior administrator with legitimate access. The use of personal cloud storage and encrypted archives without a documented project or approved destination makes this explanation unlikely.",
+      "reasoning": "Evidence ev-04, ev-06, ev-09, and ev-11 show data collection, file staging, directory enumeration, and archive creation that can occur during legitimate administrative migration work. The administrator's authorized database permissions and valid account use support the possibility of a sanctioned technical task. However, ev-08 and ev-12 show uploads to a personal cloud-storage account rather than an approved corporate transfer location or Backup Server. Evidence ev-05 shows access to severance policy material, and the job-board activity in ev-12 provides a departure-related context unrelated to a migration project. No change request, project ticket, manager approval, data-handling exception, or documented business need currently explains the progressively broader exports.",
+      "supporting": 1,
+      "conflicting": 4,
+      "techniques": ["T1213", "T1039", "T1083", "T1560", "T1567"],
+      "path": ["VPN", "Workstation", "Database", "Cloud Storage"]
+    }
+  ],
+  "evidenceGaps": [
+    {
+      "id": "gap-1",
+      "description": "Review approved change tickets, migration plans, backup exceptions, and manager approvals for any project involving customer PII exports during the three-night period.",
+      "strengthens": "Authorized but undocumented data migration project",
+      "weakens": "Malicious insider stealing data before resignation"
+    },
+    {
+      "id": "gap-2",
+      "description": "Obtain HR-approved access records for d.patel's severance-policy views, resignation discussions, leave requests, and any documented transition planning.",
+      "strengthens": "Malicious insider stealing data before resignation",
+      "weakens": "Authorized but undocumented data migration project"
+    },
+    {
+      "id": "gap-3",
+      "description": "Preserve browser history, cloud-sync client logs, and cloud-account audit records from the workstation to identify the personal account owner, uploaded object names, and whether files were shared externally.",
+      "strengthens": "Malicious insider stealing data before resignation",
+      "weakens": "Compromised credentials used by an external actor"
+    },
+    {
+      "id": "gap-4",
+      "description": "Compare VPN source IPs, workstation interactive-logon telemetry, badge-access records, and device biometric or screen-lock activity for each after-hours session.",
+      "strengthens": "Compromised credentials used by an external actor",
+      "weakens": "Malicious insider stealing data before resignation"
+    },
+    {
+      "id": "gap-5",
+      "description": "Recover the staged CSV files and encrypted archives from endpoint backups, volume shadow copies, and unallocated disk space to confirm the exact data fields and record counts transferred.",
+      "strengthens": "Malicious insider stealing data before resignation",
+      "weakens": "Authorized but undocumented data migration project"
+    },
+    {
+      "id": "gap-6",
+      "description": "Interview the administrator's manager and data owners to determine whether the queried PII tables, archive names, after-hours schedule, and personal cloud destination had an approved operational purpose.",
+      "strengthens": "Authorized but undocumented data migration project",
+      "weakens": "Malicious insider stealing data before resignation"
+    }
+  ]
 }

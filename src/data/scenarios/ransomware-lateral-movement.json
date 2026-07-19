@@ -1,15 +1,226 @@
 {
   "id": "ransomware-lateral-movement",
   "name": "Ransomware Lateral Movement",
-  "summary": "A phishing-originated endpoint compromise spread through the domain before file encryption.",
+  "summary": "A targeted phishing campaign compromised an employee workstation through a malicious macro document and installed a Cobalt Strike beacon. The attacker harvested domain administrator credentials, disabled endpoint protections through Group Policy, and deployed ransomware across 14 file servers and more than 200 workstations before ransom notes appeared.",
   "evidenceItems": [
-    { "id": "ev-01", "type": "ENDPOINT_LOG", "timestamp": "08:12:04", "summary": "Suspicious Office child process on WS-014", "linkedHypotheses": ["h1"] },
-    { "id": "ev-02", "type": "AUTH_LOG", "timestamp": "08:19:33", "summary": "Privileged account used on WS-014", "linkedHypotheses": ["h1", "h2"] },
-    { "id": "ev-03", "type": "NETWORK_LOG", "timestamp": "08:32:10", "summary": "SMB fan-out to 14 workstations", "linkedHypotheses": ["h1", "h2"] },
-    { "id": "ev-04", "type": "SYSTEM_LOG", "timestamp": "09:02:45", "summary": "Mass file rename and ransom note creation", "linkedHypotheses": ["h1"] },
-    { "id": "ev-05", "type": "DATA_LOG", "timestamp": "09:09:16", "summary": "File share encryption rate exceeded threshold", "linkedHypotheses": ["h1"] }
+    {
+      "id": "ev-01",
+      "type": "NETWORK_LOG",
+      "timestamp": "09:42:17",
+      "summary": "Email Gateway delivered an external message containing Invoice_Q3_Review.docm to j.williams@corp.example from a newly registered sender domain.",
+      "linkedHypotheses": ["h1", "h2"]
+    },
+    {
+      "id": "ev-02",
+      "type": "ENDPOINT_LOG",
+      "timestamp": "09:44:03",
+      "summary": "Employee Workstation EDR recorded WINWORD.EXE opening Invoice_Q3_Review.docm and spawning a child macro process.",
+      "linkedHypotheses": ["h1"]
+    },
+    {
+      "id": "ev-03",
+      "type": "SYSTEM_LOG",
+      "timestamp": "09:45:26",
+      "summary": "PowerShell operational logs show hidden PowerShell launched by WINWORD.EXE to download payload content from hxxps://cdn-updates-storage.example/assets/a.dat.",
+      "linkedHypotheses": ["h1", "h2"]
+    },
+    {
+      "id": "ev-04",
+      "type": "NETWORK_LOG",
+      "timestamp": "09:47:11",
+      "summary": "Proxy logs show the Employee Workstation established encrypted HTTPS beacon traffic to 198.51.100.84 at regular 60-second intervals.",
+      "linkedHypotheses": ["h1", "h3"]
+    },
+    {
+      "id": "ev-05",
+      "type": "ENDPOINT_LOG",
+      "timestamp": "09:51:42",
+      "summary": "EDR detected rundll32.exe executing a Cobalt Strike beacon payload from the user profile Temp directory.",
+      "linkedHypotheses": ["h1"]
+    },
+    {
+      "id": "ev-06",
+      "type": "SYSTEM_LOG",
+      "timestamp": "10:02:18",
+      "summary": "Employee Workstation security telemetry recorded a process consistent with Mimikatz accessing LSASS memory and creating a credential-dump file.",
+      "linkedHypotheses": ["h1", "h2", "h3"]
+    },
+    {
+      "id": "ev-07",
+      "type": "AUTH_LOG",
+      "timestamp": "10:11:55",
+      "summary": "Domain Controller logged successful NTLM authentication for CORP\\svc_domainadmin from the Employee Workstation, an atypical source for the account.",
+      "linkedHypotheses": ["h1"]
+    },
+    {
+      "id": "ev-08",
+      "type": "SYSTEM_LOG",
+      "timestamp": "10:19:34",
+      "summary": "Domain Controller recorded PsExec service creation and remote command execution from the Employee Workstation under CORP\\svc_domainadmin.",
+      "linkedHypotheses": ["h1", "h2", "h3"]
+    },
+    {
+      "id": "ev-09",
+      "type": "SYSTEM_LOG",
+      "timestamp": "10:28:09",
+      "summary": "Group Policy audit logs show a modified endpoint security policy disabling Microsoft Defender real-time monitoring across the CORP domain.",
+      "linkedHypotheses": ["h1"]
+    },
+    {
+      "id": "ev-10",
+      "type": "AUTH_LOG",
+      "timestamp": "10:39:47",
+      "summary": "Domain Controller logged scheduled-task creation through Group Policy targeting 14 file servers and 217 employee workstations.",
+      "linkedHypotheses": ["h1", "h2", "h3"]
+    },
+    {
+      "id": "ev-11",
+      "type": "DATA_LOG",
+      "timestamp": "11:04:21",
+      "summary": "File Server monitoring detected rapid encryption and renaming of shared documents with the .locked extension; the Backup Server was also contacted by affected hosts.",
+      "linkedHypotheses": ["h1", "h3"]
+    },
+    {
+      "id": "ev-12",
+      "type": "ENDPOINT_LOG",
+      "timestamp": "11:15:08",
+      "summary": "EDR across affected systems detected creation of README_RESTORE_FILES.txt ransom notes and execution of the ransomware payload through the GPO scheduled task.",
+      "linkedHypotheses": ["h1", "h2"]
+    }
   ],
-  "timeline": [{ "evidenceId": "ev-01", "label": "User execution", "technique": "T1204" }, { "evidenceId": "ev-02", "label": "Credential access", "technique": "T1003" }, { "evidenceId": "ev-03", "label": "Lateral spread", "technique": "T1021" }, { "evidenceId": "ev-04", "label": "Impact", "technique": "T1486" }],
-  "hypotheses": [{ "id": "h1", "title": "Targeted ransomware deployment", "confidence": 88, "summary": "A phishing payload enabled credential theft and controlled deployment across shares.", "reasoning": "Endpoint execution precedes privilege use, SMB fan-out, and rapid encryption across the estate.", "supporting": 5, "conflicting": 0, "techniques": ["T1204", "T1003", "T1486"], "path": ["Email Gateway", "WS-014", "Domain Controller", "File Server"] }, { "id": "h2", "title": "Worm-like propagation", "confidence": 34, "summary": "A self-propagating payload may have spread through SMB.", "reasoning": "The rapid fan-out supports propagation, but privileged account activity indicates operator control.", "supporting": 2, "conflicting": 2, "techniques": ["T1021", "T1486"] }],
-  "evidenceGaps": [{ "id": "gap-1", "description": "Collect the original phishing message and attachment", "strengthens": "Targeted ransomware", "weakens": "Worm-like propagation" }, { "id": "gap-2", "description": "Review domain controller authentication logs", "strengthens": "Targeted ransomware", "weakens": "Worm-like propagation" }]
+  "timeline": [
+    {
+      "evidenceId": "ev-01",
+      "label": "Malicious document delivered",
+      "technique": "T1566"
+    },
+    {
+      "evidenceId": "ev-02",
+      "label": "User opens macro document",
+      "technique": "T1204"
+    },
+    {
+      "evidenceId": "ev-03",
+      "label": "PowerShell downloader executes",
+      "technique": "T1059"
+    },
+    {
+      "evidenceId": "ev-04",
+      "label": "Beacon command channel established",
+      "technique": "T1071"
+    },
+    {
+      "evidenceId": "ev-05",
+      "label": "Cobalt Strike payload executed",
+      "technique": "T1105"
+    },
+    {
+      "evidenceId": "ev-06",
+      "label": "LSASS credentials dumped",
+      "technique": "T1003"
+    },
+    {
+      "evidenceId": "ev-07",
+      "label": "Domain admin credentials used",
+      "technique": "T1021"
+    },
+    {
+      "evidenceId": "ev-08",
+      "label": "PsExec reaches domain controller",
+      "technique": "T1021"
+    },
+    {
+      "evidenceId": "ev-09",
+      "label": "Defender disabled by policy",
+      "technique": "T1562"
+    },
+    {
+      "evidenceId": "ev-10",
+      "label": "Ransomware task deployed",
+      "technique": "T1053"
+    },
+    {
+      "evidenceId": "ev-11",
+      "label": "Files encrypted across network",
+      "technique": "T1486"
+    },
+    {
+      "evidenceId": "ev-12",
+      "label": "Ransom notes created",
+      "technique": "T1486"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "h1",
+      "title": "Targeted ransomware intrusion via phishing",
+      "confidence": 82,
+      "summary": "An external threat actor likely used a targeted phishing document to establish a Cobalt Strike foothold, obtain domain administrator credentials, and deploy ransomware through centralized Group Policy. The evidence supports a hands-on-keyboard intrusion progressing from initial access to credential theft, domain control, and coordinated encryption.",
+      "reasoning": "Evidence ev-01 through ev-03 establish delivery, user execution, and macro-launched PowerShell download activity associated with a phishing-led initial compromise. Evidence ev-04 and ev-05 show a Cobalt Strike beacon communicating externally and executing on the Employee Workstation, indicating command-and-control rather than an isolated malicious document. Credential dumping in ev-06 was followed by anomalous use of the svc_domainadmin account in ev-07 and PsExec-based movement to the Domain Controller in ev-08. The policy change disabling Defender in ev-09 and scheduled-task deployment in ev-10 demonstrate intentional domain-wide preparation for ransomware execution. Evidence ev-11 and ev-12 confirm the final objective: coordinated encryption with a .locked extension and widespread ransom-note creation.",
+      "supporting": 12,
+      "conflicting": 0,
+      "techniques": ["T1566", "T1204", "T1059", "T1105", "T1071", "T1003", "T1021", "T1484", "T1562", "T1053", "T1486"],
+      "path": ["Email Gateway", "Employee Workstation", "Domain Controller", "File Servers", "Backup Server"]
+    },
+    {
+      "id": "h2",
+      "title": "Supply chain compromise introduced the ransomware",
+      "confidence": 14,
+      "summary": "A supply chain compromise remains possible because the payload was retrieved from an external update-themed domain and then deployed at scale. However, the malicious document, credential theft, and interactive domain administration are more consistent with direct phishing-based intrusion.",
+      "reasoning": "Evidence ev-01 shows a document delivered from a newly registered external domain, which could be impersonating a supplier or trusted business workflow. Evidence ev-03 shows payload retrieval from an update-themed web address, and ev-12 shows a common payload executed across many systems, leaving a limited possibility of a compromised distribution channel. However, no evidence identifies a trusted vendor software package, signed update, or compromised internal software repository. The Cobalt Strike behavior in ev-04 and ev-05, along with LSASS credential access in ev-06, points to an operator-controlled intrusion rather than software update compromise. PsExec movement and GPO manipulation in ev-08 and ev-10 further indicate deliberate abuse of stolen domain administration privileges.",
+      "supporting": 1,
+      "conflicting": 5,
+      "techniques": ["T1566", "T1059", "T1105", "T1484", "T1053"],
+      "path": ["Email Gateway", "Employee Workstation", "Domain Controller", "File Servers", "Backup Server"]
+    },
+    {
+      "id": "h3",
+      "title": "Worm-like self-propagation caused the network-wide spread",
+      "confidence": 7,
+      "summary": "The rapid spread across hundreds of systems could resemble worm-like propagation, particularly after endpoint protections were disabled. The available evidence instead indicates centrally orchestrated deployment through Group Policy and scheduled tasks.",
+      "reasoning": "Evidence ev-04 demonstrates an active beacon and ev-06 identifies credential theft tooling, which could potentially support malware-assisted propagation. The PsExec activity in ev-08 and broad task targeting in ev-10 show widespread reach, while ev-11 confirms rapid encryption across file servers and workstation-accessible shares. However, ev-10 explicitly attributes deployment to a scheduled task pushed through Group Policy, providing a controlled centralized mechanism rather than autonomous host-to-host replication. There is no evidence of exploit scanning, vulnerability exploitation, or self-copying payload behavior between endpoints. The sequence from stolen domain administrator credentials to GPO-based deployment more strongly supports targeted operator-driven ransomware.",
+      "supporting": 1,
+      "conflicting": 4,
+      "techniques": ["T1071", "T1003", "T1021", "T1053", "T1486"],
+      "path": ["Email Gateway", "Employee Workstation", "Domain Controller", "File Servers", "Backup Server"]
+    }
+  ],
+  "evidenceGaps": [
+    {
+      "id": "gap-1",
+      "description": "Retrieve the original email, full headers, attachment hash, and sender-domain registration details to identify the phishing infrastructure and recipient targeting scope.",
+      "strengthens": "Targeted ransomware intrusion via phishing",
+      "weakens": "Supply chain compromise introduced the ransomware"
+    },
+    {
+      "id": "gap-2",
+      "description": "Acquire memory and disk images from the Employee Workstation to recover the Cobalt Strike configuration, downloaded payload hashes, Mimikatz artifacts, and command history.",
+      "strengthens": "Targeted ransomware intrusion via phishing",
+      "weakens": "Worm-like self-propagation caused the network-wide spread"
+    },
+    {
+      "id": "gap-3",
+      "description": "Review DNS, proxy, and firewall telemetry for the beacon destination and update-themed download domain over the previous 30 days to determine campaign scope and infrastructure reuse.",
+      "strengthens": "Targeted ransomware intrusion via phishing",
+      "weakens": "Supply chain compromise introduced the ransomware"
+    },
+    {
+      "id": "gap-4",
+      "description": "Export Group Policy version history, SYSVOL replication data, and domain controller event logs to identify the account, source host, and exact policy changes that disabled Defender and created the scheduled task.",
+      "strengthens": "Targeted ransomware intrusion via phishing",
+      "weakens": "Worm-like self-propagation caused the network-wide spread"
+    },
+    {
+      "id": "gap-5",
+      "description": "Collect endpoint network-flow and process-creation telemetry from a representative sample of infected workstations to determine whether ransomware spread occurred only through GPO or through autonomous peer-to-peer behavior.",
+      "strengthens": "Worm-like self-propagation caused the network-wide spread",
+      "weakens": "Targeted ransomware intrusion via phishing"
+    },
+    {
+      "id": "gap-6",
+      "description": "Audit Backup Server logs, backup-console accounts, and immutable-storage status to determine whether the attacker accessed, deleted, encrypted, or attempted to disable recovery assets.",
+      "strengthens": "Targeted ransomware intrusion via phishing",
+      "weakens": "Supply chain compromise introduced the ransomware"
+    }
+  ]
 }
