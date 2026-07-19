@@ -12,7 +12,7 @@ type AppContextValue = {
   createOrganization: (name: string, description: string) => void; addInvestigation: (investigation: StoredInvestigation) => void; getInvestigation: (id: string) => StoredInvestigation | undefined;
   assetDraft: AssetDraft; connectionDraft: ConnectionDraft; selectedAssetId: string | null;
   updateAssetDraft: (field: keyof AssetDraft, value: string) => void; updateConnectionDraft: (field: keyof ConnectionDraft, value: string) => void;
-  addAsset: () => boolean; addConnection: () => boolean; deleteAsset: (id: string) => void; isAssetDraftComplete: boolean; isAssetIpDuplicate: boolean; selectAsset: (id: string | null) => void;
+  addAsset: () => boolean; addConnection: () => boolean; deleteAsset: (id: string) => void; deleteConnection: (id: string) => void; isAssetDraftComplete: boolean; isAssetIpDuplicate: boolean; selectAsset: (id: string | null) => void;
 };
 const storageKey = "argus-app-state-v1";
 const blankArchitecture: Architecture = { assets: [], connections: [], trustBoundaries: DEFAULT_TRUST_BOUNDARIES };
@@ -45,6 +45,7 @@ export function AppProvider({ children }: PropsWithChildren) {
     addAsset: () => { if (!isAssetDraftComplete || isAssetIpDuplicate) return false; const asset: Asset = { id: `asset-${crypto.randomUUID()}`, name: assetDraft.name.trim(), type: assetDraft.type as AssetType, ...(assetDraft.ip.trim() ? { ip: assetDraft.ip.trim() } : {}), zone: assetDraft.zone, criticality: assetDraft.criticality as Criticality, ...(assetDraft.os.trim() ? { os: assetDraft.os.trim() } : {}), ...(assetDraft.notes.trim() ? { notes: assetDraft.notes.trim() } : {}) }; setArchitecture((current) => ({ ...current, assets: [...current.assets, asset], trustBoundaries: Array.from(new Set([...current.trustBoundaries, asset.zone])) })); setAssetDraft(initialAssetDraft); setSelectedAssetId(asset.id); return true; },
     addConnection: () => { if (!connectionDraft.from || !connectionDraft.to || connectionDraft.from === connectionDraft.to || !connectionDraft.label.trim()) return false; const connection: Connection = { id: `connection-${crypto.randomUUID()}`, from: connectionDraft.from, to: connectionDraft.to, label: connectionDraft.label.trim() }; setArchitecture((current) => ({ ...current, connections: [...current.connections, connection] })); setConnectionDraft(initialConnectionDraft); return true; },
     deleteAsset: (id) => { setArchitecture((current) => ({ ...current, assets: current.assets.filter((asset) => asset.id !== id), connections: current.connections.filter((connection) => connection.from !== id && connection.to !== id) })); setConnectionDraft((draft) => ({ ...draft, from: draft.from === id ? "" : draft.from, to: draft.to === id ? "" : draft.to })); setSelectedAssetId((current) => current === id ? null : current); },
+    deleteConnection: (id) => setArchitecture((current) => ({ ...current, connections: current.connections.filter((connection) => connection.id !== id) })),
     isAssetDraftComplete, isAssetIpDuplicate, selectAsset: setSelectedAssetId,
   }), [architecture, assetDraft, connectionDraft, hydrated, investigations, isAssetDraftComplete, isAssetIpDuplicate, organization, selectedAssetId]);
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
