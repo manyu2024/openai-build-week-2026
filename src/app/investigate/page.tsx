@@ -1,6 +1,10 @@
 "use client";
 
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useAppContext } from "@/components/providers/AppProvider";
+import credentialCompromise from "@/data/scenarios/credential-compromise.json";
+import ransomware from "@/data/scenarios/ransomware-lateral-movement.json";
+import insiderThreat from "@/data/scenarios/insider-threat-data-staging.json";
 
 const scenarios = [
   { id: "credential-compromise", title: "Data Exfiltration via Credential Compromise", detail: "VPN brute force → lateral movement → cloud exfiltration" },
@@ -10,18 +14,20 @@ const scenarios = [
 const steps = ["Parsing log entries", "Identifying anomalies", "Mapping to architecture", "Generating hypotheses", "Identifying evidence gaps", "Building timeline"];
 
 export default function NewInvestigationPage() {
+  const { addInvestigation } = useAppContext();
   const [selected, setSelected] = useState(scenarios[0].id);
   const [logs, setLogs] = useState("");
   const [fileName, setFileName] = useState("");
   const [activeStep, setActiveStep] = useState<number | null>(null);
+  const completed = useRef(false);
   const running = activeStep !== null;
 
   useEffect(() => {
     if (activeStep === null) return;
-    if (activeStep === steps.length) { window.location.assign(`/investigate/${selected}`); return; }
+    if (activeStep === steps.length) { if (completed.current) return; completed.current = true; const result = { "credential-compromise": credentialCompromise, "ransomware-lateral-movement": ransomware, "insider-threat-data-staging": insiderThreat }[selected] ?? credentialCompromise; const id = `inv-${crypto.randomUUID()}`; addInvestigation({ id, title: result.name, severity: selected === "ransomware-lateral-movement" ? "critical" : selected === "credential-compromise" ? "high" : "medium", createdAt: new Date().toISOString(), rawInput: logs, scenarioId: selected, result }); window.location.assign(`/investigate/${id}`); return; }
     const timer = window.setTimeout(() => setActiveStep((current) => (current === null ? null : current + 1)), 520);
     return () => window.clearTimeout(timer);
-  }, [activeStep, selected]);
+  }, [activeStep, addInvestigation, logs, selected]);
 
   function upload(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -53,7 +59,7 @@ export default function NewInvestigationPage() {
           <div className="mt-4 space-y-3">{scenarios.map((scenario, index) => <button key={scenario.id} onClick={() => setSelected(scenario.id)} disabled={running} className={`w-full rounded-lg border p-3 text-left transition ${selected === scenario.id ? "border-primary bg-primary/10 shadow-[0_0_20px_rgba(47,84,235,.12)]" : "border-border bg-panel-secondary hover:border-border-hover"}`}>
             <span className="font-mono text-[10px] text-cyan">0{index + 1}</span><span className="mt-1 block text-sm font-medium">{scenario.title}</span><span className="mt-1 block text-xs leading-5 text-slate-500">{scenario.detail}</span>
           </button>)}</div>
-          <button onClick={() => setActiveStep(0)} disabled={running} className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-medium transition hover:bg-[#3d62ef] disabled:cursor-wait disabled:bg-primary/60">
+          <button onClick={() => { completed.current = false; setActiveStep(0); }} disabled={running} className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-medium transition hover:bg-[#3d62ef] disabled:cursor-wait disabled:bg-primary/60">
             {running ? "Analysis in progress" : "Run Analysis"}<span aria-hidden>→</span>
           </button>
         </section>

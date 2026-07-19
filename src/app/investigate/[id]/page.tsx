@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
+import { useAppContext } from "@/components/providers/AppProvider";
 import credentialCompromise from "@/data/scenarios/credential-compromise.json";
 import ransomware from "@/data/scenarios/ransomware-lateral-movement.json";
 import insiderThreat from "@/data/scenarios/insider-threat-data-staging.json";
@@ -12,7 +14,9 @@ const typeStyles: Record<EvidenceType, string> = { AUTH_LOG: "bg-low/15 text-low
 const typeColors: Record<EvidenceType, string> = { AUTH_LOG: "#4096FF", NETWORK_LOG: "#B37FEB", DATA_LOG: "#FF4D4F", SYSTEM_LOG: "#FFA940", ENDPOINT_LOG: "#13C2C2" };
 
 export default function InvestigationView({ params }: { params: { id: string } }) {
-  const scenario = scenarios[params.id] ?? credentialCompromise;
+  const { getInvestigation } = useAppContext();
+  const stored = getInvestigation(params.id);
+  const scenario = scenarios[stored?.scenarioId ?? params.id] ?? credentialCompromise;
   const [selectedHypothesis, setSelectedHypothesis] = useState<string | null>(null);
   const [selectedEvidence, setSelectedEvidence] = useState<string | null>(null);
   const [tab, setTab] = useState<"timeline" | "graph">("timeline");
@@ -24,7 +28,7 @@ export default function InvestigationView({ params }: { params: { id: string } }
   const graphNodes = selected?.path ?? ["Internet", "VPN Gateway", "File Server", "Cloud Storage"];
 
   return <main className="min-h-screen bg-canvas p-4 text-slate-100 lg:p-5">
-    <header className="mb-4 flex flex-wrap items-end justify-between gap-3 border-b border-border pb-4"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-cyan">Investigation / {scenario.id}</p><h1 className="mt-1 text-xl font-semibold">{scenario.name}</h1><p className="mt-1 max-w-3xl text-xs text-slate-500">{scenario.summary}</p></div><button className="rounded border border-border bg-panel px-3 py-2 text-xs text-slate-300 hover:border-border-hover">Export report</button></header>
+    <header className="mb-4 flex flex-wrap items-end justify-between gap-3 border-b border-border pb-4"><div><Link href="/" className="font-mono text-[10px] uppercase tracking-[.16em] text-cyan hover:text-slate-100">← Dashboard</Link><p className="mt-2 font-mono text-[10px] uppercase tracking-[.16em] text-slate-500">Investigation / {params.id}</p><h1 className="mt-1 text-xl font-semibold">{stored?.title ?? scenario.name}</h1><p className="mt-1 max-w-3xl text-xs text-slate-500">{scenario.summary}</p></div><button className="rounded border border-border bg-panel px-3 py-2 text-xs text-slate-300 hover:border-border-hover">Export report</button></header>
     <div className="grid min-h-[calc(100vh-118px)] gap-4 xl:grid-cols-[30fr_45fr_25fr]">
       <aside className="flex min-h-0 flex-col rounded-xl border border-border bg-panel p-3">
         <div className="mb-3 flex items-center justify-between"><h2 className="text-sm font-semibold">Evidence feed</h2><span className="font-mono text-[10px] text-slate-500">{visibleEvidence.length} ITEMS</span></div>

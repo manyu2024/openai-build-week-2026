@@ -1,0 +1,5 @@
+"use client";
+import Link from "next/link";
+import { useAppContext } from "@/components/providers/AppProvider";
+const links = [["Dashboard", "/"], ["Architecture", "/architecture"], ["New Investigation", "/investigate"]] as const;
+export function TopNavigation() { const { organization } = useAppContext(); return <header className="sticky top-0 z-50 border-b border-border bg-[#0A0E17]/95 px-4 backdrop-blur sm:px-7"><div className="mx-auto flex h-14 max-w-[1600px] items-center justify-between gap-4"><Link href="/" className="font-mono text-lg font-bold tracking-[.2em] text-cyan">ARGUS</Link><nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">{links.map(([label, href]) => <Link key={href} href={href} className="rounded px-3 py-1.5 text-xs text-slate-400 transition hover:bg-panel hover:text-slate-100">{label}</Link>)}</nav><span className="max-w-[40%] truncate font-mono text-[10px] uppercase tracking-wider text-slate-500">{organization?.name ?? "No organization"}</span></div></header>; }

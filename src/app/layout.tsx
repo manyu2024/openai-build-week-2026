@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { AppProvider } from "@/components/providers/AppProvider";
+import { TopNavigation } from "@/components/layout/TopNavigation";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -12,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}><body className="font-sans"><AppProvider>{children}</AppProvider></body></html>;
+  return <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}><body className="font-sans"><AppProvider><TopNavigation />{children}</AppProvider></body></html>;
 }
