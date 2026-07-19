@@ -171,7 +171,7 @@
       "supporting": 1,
       "conflicting": 5,
       "techniques": ["T1566", "T1059", "T1105", "T1484", "T1053"],
-      "path": ["Email Gateway", "Employee Workstation", "Domain Controller", "File Servers", "Backup Server"]
+      "path":["Employee Workstation", "Domain Controller", "File Servers"]
     },
     {
       "id": "h3",
@@ -182,7 +182,7 @@
       "supporting": 1,
       "conflicting": 4,
       "techniques": ["T1071", "T1003", "T1021", "T1053", "T1486"],
-      "path": ["Email Gateway", "Employee Workstation", "Domain Controller", "File Servers", "Backup Server"]
+      "path": ["Employee Workstation", "File Servers", "Backup Server"]
     }
   ],
   "evidenceGaps": [

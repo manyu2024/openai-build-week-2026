@@ -63,7 +63,7 @@ export default function NewInvestigationPage() {
   useEffect(() => {
     if (activeStep === null) return;
     if (activeStep === steps.length) { if (completed.current) return; completed.current = true; const result = { "credential-compromise": credentialCompromise, "ransomware-lateral-movement": ransomware, "insider-threat-data-staging": insiderThreat }[selected] ?? credentialCompromise; const id = `inv-${crypto.randomUUID()}`; addInvestigation({ id, title: result.name, severity: selected === "ransomware-lateral-movement" ? "critical" : selected === "credential-compromise" ? "high" : "medium", createdAt: new Date().toISOString(), rawInput: logs, scenarioId: selected, result }); window.location.assign(`/investigate/${id}`); return; }
-    const timer = window.setTimeout(() => setActiveStep((current) => (current === null ? null : current + 1)), 520);
+    const timer = window.setTimeout(() => setActiveStep((current) => (current === null ? null : current + 1)), 800);
     return () => window.clearTimeout(timer);
   }, [activeStep, addInvestigation, logs, selected]);
 
@@ -102,7 +102,7 @@ export default function NewInvestigationPage() {
           </button>
         </section>
       </div>
-      {running && <section className="mt-5 rounded-xl border border-border bg-panel p-5"><div className="mb-4 flex items-center justify-between"><h2 className="text-sm font-medium">Analysis pipeline</h2><span className="font-mono text-[10px] text-cyan">{Math.min(activeStep + 1, 6)} / 6</span></div><ol className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{steps.map((step, index) => { const complete = index < activeStep; const current = index === activeStep; return <li key={step} className={`flex items-center gap-2 rounded border px-3 py-2.5 text-xs ${current ? "border-primary bg-primary/10 text-white" : complete ? "border-safe/40 bg-safe/5 text-slate-300" : "border-border bg-panel-secondary text-slate-600"}`}><span className={`flex h-5 w-5 items-center justify-center rounded-full font-mono text-[10px] ${current ? "animate-pulse bg-primary" : complete ? "bg-safe text-canvas" : "bg-border"}`}>{complete ? "✓" : index + 1}</span>{step}{current && <span className="ml-auto animate-pulse text-cyan">…</span>}</li> })}</ol></section>}
+      {running && <section className="mt-5 rounded-xl border border-border bg-panel p-5"><div className="mb-4 flex items-center justify-between"><h2 className="text-sm font-medium">Analysis pipeline</h2><span className="font-mono text-[10px] text-cyan">{Math.min(activeStep + 1, 6)} / 6</span></div><ol className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{steps.map((step, index) => { const complete = index < activeStep; const current = index === activeStep; return <li key={step} className={`flex items-center gap-2 rounded border px-3 py-2.5 text-xs ${current ? "border-primary bg-primary/10 text-white" : complete ? "border-safe/40 bg-safe/5 text-slate-300" : "border-border bg-panel-secondary text-slate-600"}`}><span className={`flex h-5 w-5 items-center justify-center rounded-full font-mono text-[10px] ${current ? "animate-pulse bg-primary" : complete ? "bg-safe text-canvas" : "bg-border"}`}>{complete ? "✓" : index + 1}</span>{step}{current && <span className="ml-auto animate-pulse text-cyan">…</span>}</li> })}</ol><div className="mt-4 h-1 overflow-hidden rounded-full bg-border"><div className="h-full rounded-full bg-gradient-to-r from-primary to-cyan transition-all duration-700" style={{ width: `${Math.min(((activeStep + 1) / steps.length) * 100, 100)}%` }} /></div></section>}
     </div>
   </main>;
 }

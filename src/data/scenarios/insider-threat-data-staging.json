@@ -160,7 +160,7 @@
       "supporting": 12,
       "conflicting": 0,
       "techniques": ["T1078", "T1213", "T1039", "T1005", "T1083", "T1560", "T1567"],
-      "path": ["VPN", "Workstation", "Database", "Cloud Storage"]
+      "path": ["Workstation", "VPN", "Cloud Storage"]
     },
     {
       "id": "h2",
@@ -171,7 +171,7 @@
       "supporting": 1,
       "conflicting": 7,
       "techniques": ["T1078", "T1213", "T1005", "T1560", "T1567"],
-      "path": ["VPN", "Workstation", "Database", "Cloud Storage"]
+      "path": ["Cloud Storage", "Workstation", "Database", "VPN"]
     },
     {
       "id": "h3",
