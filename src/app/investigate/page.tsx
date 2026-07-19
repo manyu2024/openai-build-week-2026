@@ -13,22 +13,42 @@ const scenarios = [
 ];
 const steps = ["Parsing log entries", "Identifying anomalies", "Mapping to architecture", "Generating hypotheses", "Identifying evidence gaps", "Building timeline"];
 const sampleLogs: Record<string, string> = {
-  "credential-compromise": `2026-07-17T02:14:08Z vpn-gateway auth failed user=a.chen source=185.243.12.44 reason=invalid_password
-2026-07-17T02:19:32Z vpn-gateway auth success user=a.chen source=185.243.12.44 mfa=not_challenged
-2026-07-17T02:28:15Z firewall allow src=vpn-gateway dst=FILE-SRV-01 protocol=RDP port=3389
-2026-07-17T02:41:06Z file-server archive created path=C:\\Temp\\finance_q3.zip size=8.4GB user=a.chen
-2026-07-17T02:47:44Z proxy upload host=cloud-storage-sync.com bytes=9021456384 user=a.chen
-2026-07-17T02:51:29Z FILE-SRV-01 security event=1102 message="Audit log was cleared"`,
-  "ransomware-lateral-movement": `2026-07-18T08:12:04Z WS-014 process winword.exe spawned powershell.exe -enc SQBFAFgA
-2026-07-18T08:19:33Z domain-controller auth success user=svc-backup source=WS-014 privilege=administrator
-2026-07-18T08:32:10Z firewall smb fanout source=WS-014 destinations=14 port=445
-2026-07-18T09:02:45Z file-server created README_RESTORE_FILES.txt count=2471
-2026-07-18T09:09:16Z file-server alert encryption_rate=1837 files/min threshold=250`,
-  "insider-threat-data-staging": `2026-07-16T23:18:22Z vpn auth success user=j.singh source=10.44.8.19 device=unmanaged
-2026-07-16T23:26:43Z crm-db query export customer_records rows=184221 user=j.singh
-2026-07-16T23:37:01Z WS-022 archive created C:\\Users\\j.singh\\AppData\\Local\\Temp\\clients.zip
-2026-07-16T23:44:55Z proxy upload host=drive.google.com bytes=2348821981 user=j.singh
-2026-07-16T23:49:19Z WS-022 endpoint usb_device_connected vendor=SanDisk serial=4C530001`,
+  "credential-compromise": `2026-07-19T02:14:08Z vpn-gateway auth failure user=a.chen source=185.220.101.47 count=1 reason=invalid_password
+2026-07-19T02:18:41Z vpn-gateway credential-attempt burst user=a.chen source=185.220.101.47 failures=47 window=4m
+2026-07-19T02:21:16Z vpn-gateway auth success user=a.chen source=185.220.101.47 failures_before_success=47 mfa=not_triggered policy=legacy-vpn
+2026-07-19T02:27:03Z ad-controller kerberos-tgt user=a.chen source=10.44.18.92 result=success
+2026-07-19T02:31:49Z file-server rdp-logon user=CORP\\a.chen source=10.44.18.92 logon_type=10 after_hours=true
+2026-07-19T02:36:22Z file-server edr process=radminsvc.exe signer=unsigned user=a.chen action=remote_access_utility_detected
+2026-07-19T02:42:11Z file-server powershell remote=true command="Get-SmbShare; query database connection strings" user=a.chen
+2026-07-19T02:48:37Z db-server rdp-logon user=CORP\\a.chen source=10.20.5.14 service=file-server result=success
+2026-07-19T02:56:19Z db-audit user=a.chen operation=bulk_select tables=CustomerRecords,PaymentProfiles,ContactHistory
+2026-07-19T03:04:52Z file-server edr process=7z.exe archive=backup_20260719.7z encrypted=true size=8.4GB source=customer_exports
+2026-07-19T03:10:28Z firewall outbound_tls source=file-server destination=storage-sync.cloudfilescdn.com port=443 bytes=8.4GB
+2026-07-19T03:14:47Z file-server security event=1102 action=clear_event_log; delete_file=backup_20260719.7z user=CORP\\a.chen`,
+  "ransomware-lateral-movement": `2026-07-19T09:42:17Z email-gateway delivered sender=invoices@newly-registered.example recipient=j.williams@corp.example attachment=Invoice_Q3_Review.docm
+2026-07-19T09:44:03Z workstation-edr host=EMP-WS-014 process=WINWORD.EXE document=Invoice_Q3_Review.docm child_process=macro
+2026-07-19T09:45:26Z powershell-operational parent=WINWORD.EXE hidden=true command="download hxxps://cdn-updates-storage.example/assets/a.dat"
+2026-07-19T09:47:11Z proxy host=EMP-WS-014 destination=198.51.100.84 protocol=HTTPS interval=60s event=beacon_traffic
+2026-07-19T09:51:42Z workstation-edr host=EMP-WS-014 process=rundll32.exe payload=cobalt_strike_beacon path=%TEMP%
+2026-07-19T10:02:18Z workstation-security host=EMP-WS-014 process=mimikatz.exe action=lsass_memory_access output=credential_dump
+2026-07-19T10:11:55Z domain-controller ntlm-auth user=CORP\\svc_domainadmin source=EMP-WS-014 result=success atypical_source=true
+2026-07-19T10:19:34Z domain-controller service-create tool=PsExec source=EMP-WS-014 user=CORP\\svc_domainadmin action=remote_command
+2026-07-19T10:28:09Z group-policy audit policy=endpoint-security change=disable_defender_realtime_monitoring scope=CORP
+2026-07-19T10:39:47Z domain-controller gpo scheduled-task-create targets=file_servers:14,workstations:217
+2026-07-19T11:04:21Z file-server monitor event=rapid_encryption extension=.locked backup_server_contacted=true
+2026-07-19T11:15:08Z endpoint-edr fleet event=ransomware_task_execution artifact=README_RESTORE_FILES.txt source=gpo_scheduled_task`,
+  "insider-threat-data-staging": `2026-07-17T23:07:14Z vpn auth success user=CORP\\d.patel source=assigned-workstation after_hours=true; db-auth result=success
+2026-07-17T23:24:39Z db-audit user=d.patel query=SELECT tables=CustomerContact,CustomerAddress baseline=atypical
+2026-07-18T00:11:52Z workstation telemetry process=sqlcmd.exe export=C:\\Users\\d.patel\\Documents\\customer_contacts.csv records=18420
+2026-07-18T00:47:26Z file-audit process=7z.exe archive=Q1_archive.7z password_protected=true input=customer_contacts.csv
+2026-07-18T23:36:08Z hr-portal auth user=d.patel source=assigned-workstation document=employee_severance-policy
+2026-07-18T23:58:44Z db-audit user=d.patel query=SELECT tables=CustomerPII,PaymentProfile,AccountHistory permissions=DBA
+2026-07-19T00:43:17Z workstation telemetry user=d.patel action=create_csv_exports files=3 size=2.7GB path=user_staging_folder
+2026-07-19T01:31:29Z proxy source=d.patel-workstation destination=drive.google.com protocol=HTTPS bytes=2.8GB account=personal_cloud
+2026-07-19T00:14:06Z file-audit user=d.patel action=enumerate_export_directories; copy_to=C:\\Users\\d.patel\\AppData\\Local\\Temp\\staging
+2026-07-19T00:52:41Z db-audit user=d.patel operation=full_extract dataset=active_customer_records fields=PII unauthorized_scope=true
+2026-07-19T01:46:33Z workstation telemetry process=7z.exe archive=personal_backup.7z encrypted=true size=8.1GB input=customer_csv_files
+2026-07-19T02:38:57Z proxy source=d.patel-workstation destination=drive.google.com bytes=8.1GB account=personal_cloud; daytime_activity=job_board_searches`,
 };
 
 export default function NewInvestigationPage() {
