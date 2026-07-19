@@ -12,6 +12,24 @@ const scenarios = [
   { id: "insider-threat-data-staging", title: "Insider Threat Data Staging", detail: "After-hours access → staging → personal cloud" },
 ];
 const steps = ["Parsing log entries", "Identifying anomalies", "Mapping to architecture", "Generating hypotheses", "Identifying evidence gaps", "Building timeline"];
+const sampleLogs: Record<string, string> = {
+  "credential-compromise": `2026-07-17T02:14:08Z vpn-gateway auth failed user=a.chen source=185.243.12.44 reason=invalid_password
+2026-07-17T02:19:32Z vpn-gateway auth success user=a.chen source=185.243.12.44 mfa=not_challenged
+2026-07-17T02:28:15Z firewall allow src=vpn-gateway dst=FILE-SRV-01 protocol=RDP port=3389
+2026-07-17T02:41:06Z file-server archive created path=C:\\Temp\\finance_q3.zip size=8.4GB user=a.chen
+2026-07-17T02:47:44Z proxy upload host=cloud-storage-sync.com bytes=9021456384 user=a.chen
+2026-07-17T02:51:29Z FILE-SRV-01 security event=1102 message="Audit log was cleared"`,
+  "ransomware-lateral-movement": `2026-07-18T08:12:04Z WS-014 process winword.exe spawned powershell.exe -enc SQBFAFgA
+2026-07-18T08:19:33Z domain-controller auth success user=svc-backup source=WS-014 privilege=administrator
+2026-07-18T08:32:10Z firewall smb fanout source=WS-014 destinations=14 port=445
+2026-07-18T09:02:45Z file-server created README_RESTORE_FILES.txt count=2471
+2026-07-18T09:09:16Z file-server alert encryption_rate=1837 files/min threshold=250`,
+  "insider-threat-data-staging": `2026-07-16T23:18:22Z vpn auth success user=j.singh source=10.44.8.19 device=unmanaged
+2026-07-16T23:26:43Z crm-db query export customer_records rows=184221 user=j.singh
+2026-07-16T23:37:01Z WS-022 archive created C:\\Users\\j.singh\\AppData\\Local\\Temp\\clients.zip
+2026-07-16T23:44:55Z proxy upload host=drive.google.com bytes=2348821981 user=j.singh
+2026-07-16T23:49:19Z WS-022 endpoint usb_device_connected vendor=SanDisk serial=4C530001`,
+};
 
 export default function NewInvestigationPage() {
   const { addInvestigation } = useAppContext();
@@ -56,7 +74,7 @@ export default function NewInvestigationPage() {
         </section>
         <section className="rounded-xl border border-border bg-panel p-5">
           <div className="flex items-center justify-between"><h2 className="text-sm font-semibold">Demo scenarios</h2><span className="font-mono text-[10px] text-slate-500">STATIC DATA</span></div>
-          <div className="mt-4 space-y-3">{scenarios.map((scenario, index) => <button key={scenario.id} onClick={() => setSelected(scenario.id)} disabled={running} className={`w-full rounded-lg border p-3 text-left transition ${selected === scenario.id ? "border-primary bg-primary/10 shadow-[0_0_20px_rgba(47,84,235,.12)]" : "border-border bg-panel-secondary hover:border-border-hover"}`}>
+          <div className="mt-4 space-y-3">{scenarios.map((scenario, index) => <button key={scenario.id} onClick={() => { setSelected(scenario.id); setLogs(sampleLogs[scenario.id]); setFileName(""); }} disabled={running} className={`w-full rounded-lg border p-3 text-left transition ${selected === scenario.id ? "border-primary bg-primary/10 shadow-[0_0_20px_rgba(47,84,235,.12)]" : "border-border bg-panel-secondary hover:border-border-hover"}`}>
             <span className="font-mono text-[10px] text-cyan">0{index + 1}</span><span className="mt-1 block text-sm font-medium">{scenario.title}</span><span className="mt-1 block text-xs leading-5 text-slate-500">{scenario.detail}</span>
           </button>)}</div>
           <button onClick={() => { completed.current = false; setActiveStep(0); }} disabled={running} className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-medium transition hover:bg-[#3d62ef] disabled:cursor-wait disabled:bg-primary/60">
