@@ -62,7 +62,7 @@ export default function NewInvestigationPage() {
 
   useEffect(() => {
     if (activeStep === null) return;
-    if (activeStep === steps.length) { if (completed.current) return; completed.current = true; const result = { "credential-compromise": credentialCompromise, "ransomware-lateral-movement": ransomware, "insider-threat-data-staging": insiderThreat }[selected] ?? credentialCompromise; const id = `inv-${crypto.randomUUID()}`; addInvestigation({ id, title: result.name, severity: selected === "ransomware-lateral-movement" ? "critical" : selected === "credential-compromise" ? "high" : "medium", createdAt: new Date().toISOString(), rawInput: logs, scenarioId: selected, result }); window.location.assign(`/investigate/${id}`); return; }
+    if (activeStep === steps.length) { if (completed.current) return; completed.current = true; const result = { "credential-compromise": credentialCompromise, "ransomware-lateral-movement": ransomware, "insider-threat-data-staging": insiderThreat }[selected] ?? credentialCompromise; const id = `inv-${crypto.randomUUID()}`; addInvestigation({ id, title: result.name, severity: selected === "ransomware-lateral-movement" ? "critical" : selected === "credential-compromise" ? "high" : "medium", createdAt: new Date().toISOString(), rawInput: logs, scenarioId: selected, result, analysisSource: "precomputed" }); window.location.assign(`/investigate/${id}`); return; }
     const timer = window.setTimeout(() => setActiveStep((current) => (current === null ? null : current + 1)), 800);
     return () => window.clearTimeout(timer);
   }, [activeStep, addInvestigation, logs, selected]);

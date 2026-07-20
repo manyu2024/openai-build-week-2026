@@ -6,7 +6,8 @@ import type { Architecture, Asset, AssetType, Connection, Criticality, Organizat
 
 type AssetDraft = { name: string; type: AssetType | ""; ip: string; zone: string; criticality: Criticality | ""; os: string; notes: string };
 type ConnectionDraft = { from: string; to: string; label: string };
-export type StoredInvestigation = { id: string; title: string; severity: Severity; createdAt: string; rawInput: string; scenarioId: string; result: unknown };
+export type AnalysisSource = "precomputed" | "live";
+export type StoredInvestigation = { id: string; title: string; severity: Severity; createdAt: string; rawInput: string; scenarioId: string; result: unknown; analysisSource?: AnalysisSource };
 type AppContextValue = {
   organization: Organization | null; architecture: Architecture; investigations: StoredInvestigation[]; hydrated: boolean;
   createOrganization: (name: string, description: string) => void; addInvestigation: (investigation: StoredInvestigation) => void; getInvestigation: (id: string) => StoredInvestigation | undefined;
