@@ -161,8 +161,8 @@ src/
 
 **OpenAI Build Week 2026**, Developer Tools Track
 
-Built by [Manyu](https://github.com/manyu2024)
-Final-year B.E. Computer Science and Cyber Security, Dayananda Sagar College of Engineering, Bengaluru
+Built by me, [Manyu](https://github.com/manyu2024)
+A final-year B.E. Computer Science and Cyber Security, Dayananda Sagar College of Engineering, Bengaluru
 
 ---
 
